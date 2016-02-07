@@ -1,4 +1,4 @@
-# pucture-gallery
+# Picture-gallery
 
 FIXME
 
