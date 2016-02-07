@@ -1,6 +1,6 @@
 # Picture-gallery
 
-FIXME
+An interactive web application with Compojure and Ring
 
 ## Prerequisites
 
