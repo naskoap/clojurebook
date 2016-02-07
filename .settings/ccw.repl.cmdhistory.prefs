@@ -1,0 +1,2 @@
+cmdhistory=["(start-server)" "(create-users-table)" "(start-server)" "(create-users-table)" "(start-server)" "(stop-server)" "(start-server)" "(stop-server)" "(start-server)" "(stop-server)" "(start-server)" "(sql/with-connection db\\n  (sql/with-query-results res [\\"select * from users\\"] (print res)))" "(start-server)" "(use 'pucture-gallery.repl)" "(start-server)" "(stop-server)" "(start-server)" "(stop-server)" "(start-server)" "(stop-server)" "(start-server)"]
+eclipse.preferences.version=1
