@@ -14,6 +14,10 @@ To start a web server for the application, run:
 
     lein ring server
 
+## Resources
+
+This project is based on an exercise featured in [*Web Development with Clojure*] (https://pragprog.com/book/dswdcloj/web-development-with-clojure) by Dmitri Sotnikov.
+
 ## License
 
 Copyright © 2016 FIXME
