@@ -16,7 +16,7 @@ To start a web server for the application, run:
 
 ## Resources
 
-This project is based on an exercise featured in [*Web Development with Clojure*] (https://pragprog.com/book/dswdcloj/web-development-with-clojure) by Dmitri Sotnikov.
+This project is based on an exercise featured in [*Web Development with Clojure*] (https://pragprog.com/book/dswdcloj/web-development-with-clojure) by [Dmitri Sotnikov](https://github.com/yogthos).
 
 ## License
 
