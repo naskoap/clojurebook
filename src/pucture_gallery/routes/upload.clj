@@ -11,7 +11,7 @@
             [clojure.java.io :as io]
             [ring.util.response :refer [file-response]]
             [pucture-gallery.models.db :as db]
-            [pucture-gallery.util :refer [galleries gallery-path]])
+            );[pucture-gallery.util :refer [galleries gallery-path]]
 
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
@@ -29,13 +29,16 @@
                (file-upload :file)
                (submit-button "upload"))))
    
+   (defn gallery-path []
+     "galleries")
+   
    (defn handle-upload [{:keys [filename] :as file}]
      (upload-page 
        (if (empty? filename)
          "please select a file to upload"
          
          (try
-           (noir.io/upload-file (gallery-path file) :create-path? true)
+           (noir.io/upload-file (gallery-path) file :create-path? true)
            (image {:height "150px"}
               (str "/img" (url-encode filename)))
            
