@@ -31,8 +31,8 @@ An interactive web application with Compojure and Ring
 - [ ] use [OpenWeatherMap's API] (http://openweathermap.org/) and geolocation to display weather data at the location where the user is logging in from
 - [ ] although many map layers are available, this project will focus solely on temperature and wind data  
  
-**7. Implement a real-time chat service with [Aleph](https://github.com/ztellman/aleph)**
-- [ ] Aleph is Ring-compliant and offers full peformance and flexibility 
+**7. Implement a real-time chat service**
+- [ ] Viable options include [Aleph](https://github.com/ztellman/aleph), an asynchronous, Ring-compliant library for client and server network programming, [asynch-sockets](https://github.com/bguthrie/async-sockets), [clj-sockets](https://github.com/atroche/clj-sockets) as well as [other websocket interfaces](https://clojars.org/search?q=websockets)
  
 **8. Delete Account**
 - [ ] when an account is deleted, the user and all of their corresponding data are removed from the database
