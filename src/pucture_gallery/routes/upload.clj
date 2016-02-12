@@ -10,8 +10,8 @@
             [noir.util.route :refer [restricted]]
             [clojure.java.io :as io]
             [ring.util.response :refer [file-response]]
-            [pucture-gallery.models.db :as db]
-            );[pucture-gallery.util :refer [galleries gallery-path]]
+            [pucture-gallery.models.db :as db])
+            ;[pucture-gallery.util :refer [galleries gallery-path]]
 
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
@@ -19,7 +19,7 @@
            java.awt.geom.AffineTransform
            javax.imageio.ImageIO))
 
-;function rendering the upload image and a handler to process the form's POST action
+    ;function rendering the upload image and a handler to process the form's POST action
    (defn upload-page [info]
     (layout/common
       [:h2 "Upload an image"]
@@ -40,7 +40,7 @@
          (try
            (noir.io/upload-file (gallery-path) file :create-path? true)
            (image {:height "150px"}
-              (str "/img" (url-encode filename)))
+                  (str "/img/" (url-encode filename)))
            
            (catch Exception ex
              (str "error uploading file " (.getMessage ex)))))))
