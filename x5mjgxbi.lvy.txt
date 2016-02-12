@@ -1,0 +1,24 @@
+Adds an omitted backslash needed to properly find a file path and provides an upload link
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch upload-fix
+# Changes to be committed:
+#	modified:   .nrepl-port
+#	modified:   .settings/ccw.repl.cmdhistory.prefs
+#	modified:   bin/pucture_gallery/routes/home.clj
+#	modified:   bin/pucture_gallery/routes/upload.clj
+#	modified:   bin/pucture_gallery/views/layout.clj
+#	new file:   galleries/20150418_120033.jpg
+#	new file:   galleries/clean_code.PNG
+#	new file:   galleries/groomeReceipt.PNG
+#	new file:   galleries/photo.JPG
+#	new file:   galleries/profice_picture.jpg
+#	new file:   galleries/upload1.PNG
+#	new file:   galleries/upload2.PNG
+#	modified:   picture-gallery
+#	modified:   src/pucture_gallery/routes/home.clj
+#	modified:   src/pucture_gallery/routes/upload.clj
+#	modified:   src/pucture_gallery/views/layout.clj
+#
+
