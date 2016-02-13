@@ -5,6 +5,7 @@
             [pucture-gallery.routes.auth :refer [auth-routes]]
             [pucture-gallery.routes.home :refer [home-routes]]
             [pucture-gallery.routes.upload :refer [upload-routes]]
+            [pucture-gallery.routes.gallery :refer [gallery-routes]]
             [noir.session :as session]))
 
 (defn init []
@@ -25,6 +26,7 @@
            [auth-routes
             home-routes
             upload-routes
+            gallery-routes
             app-routes]
            ;;applies rules to restricted pages
            :access-rules [user-page]))

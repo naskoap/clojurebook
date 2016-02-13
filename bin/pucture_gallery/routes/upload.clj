@@ -45,7 +45,7 @@
           "jpeg"
           (File. (str path thumb-prefix filename)))))
     
-    ;;renders the upload image and a handler to process the form's POST action
+   ;;renders the upload image and a handler to process the form's POST action
    (defn upload-page [info]
 	    (layout/common
 	      [:h2 "Upload an image"]
@@ -56,23 +56,23 @@
 	               (submit-button "upload"))))
       
    (defn handle-upload [{:keys [filename] :as file}]
-     (upload-page 
+      (upload-page 
        (if (empty? filename)
          "please select a file to upload"
          
          (try
             ;;save the file and create the thumbnail
-            (upload-file (gallery-path) file )
+             (upload-file (gallery-path) file )
             (save-thumbnail file)
             (db/add-image (session/get :user) filename)
             ;;display the thumbnail
-            (image {:height "150px"}
+             (image {:height "150px"}
                   (thumb-uri (session/get :user) filename))
            
            (catch Exception ex
              (str "error uploading file " (.getMessage ex)))))))
    
-   ;; use user ID when looking up a file
+   ;;use user ID when looking up a file
    (defn serve-file [user-id file-name]
      (file-response (str galleries File/separator user-id File/separator file-name)))
    
