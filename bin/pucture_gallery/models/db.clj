@@ -17,3 +17,16 @@
   (with-db sql/with-query-results
       res ["select * from users where id = ?" id] (first res)))
 
+;;insert a record every time an image is uploaded
+(defn add-image [userid name]
+  (with-db
+    sql/transaction
+    
+    (if (sql/with-query-results
+          res
+          ["select userid from images where userid = ? and name = ?" userid name]
+          (empty? res))
+      (sql/insert-record :images {:userid userid :name name})
+      (throw
+        (Exception. "You have already uploaded an image with the same name.")))))
+

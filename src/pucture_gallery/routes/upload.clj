@@ -10,8 +10,8 @@
             [noir.util.route :refer [restricted]]
             [clojure.java.io :as io]
             [ring.util.response :refer [file-response]]
-            [pucture-gallery.models.db :as db])
-            ;[pucture-gallery.util :refer [galleries gallery-path]]
+            [pucture-gallery.models.db :as db]
+            [pucture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]])
 
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
@@ -19,40 +19,69 @@
            java.awt.geom.AffineTransform
            javax.imageio.ImageIO))
 
-    ;function rendering the upload image and a handler to process the form's POST action
+    (def thumb-size 150)
+    
+    ;;scale images and do transformation with AffineTransformOp
+    (defn scale [img ratio width height]
+      (let [scale (AffineTransform/getScaleInstance
+                    (double ratio) (double ratio))
+            transform-op (AffineTransformOp.
+                           scale AffineTransformOp/TYPE_BILINEAR)]
+        (.filter transform-op img (BufferedImage. width height (.getType img))))) 
+    
+    ;;read uploaded file's image using ImageIO
+    (defn scale-image [file]
+      (let [img (ImageIO/read file)
+            img-width (.getWidth img)
+            img-height (.getHeight img)
+            ratio (/ thumb-size img-height)]
+        (scale img ratio (int (* img-width ratio)) thumb-size)))
+    
+    ; save thumbnail and call it after upload-file is called
+    (defn save-thumbnail [{:keys [filename]}]
+      (let [path (str (gallery-path) File/separator)]
+        (ImageIO/write 
+          (scale-image (io/input-stream (str path filename)))
+          "jpeg"
+          (File. (str path thumb-prefix filename)))))
+    
+    ;;renders the upload image and a handler to process the form's POST action
    (defn upload-page [info]
-    (layout/common
-      [:h2 "Upload an image"]
-      [:p info]
-      (form-to {:enctype "multipart/form-data"}
-               [:post "/upload"]
-               (file-upload :file)
-               (submit-button "upload"))))
-   
-   (defn gallery-path []
-     "galleries")
-   
+	    (layout/common
+	      [:h2 "Upload an image"]
+	      [:p info]
+	      (form-to {:enctype "multipart/form-data"}
+	               [:post "/upload"]
+	               (file-upload :file)
+	               (submit-button "upload"))))
+      
    (defn handle-upload [{:keys [filename] :as file}]
      (upload-page 
        (if (empty? filename)
          "please select a file to upload"
          
          (try
-           (noir.io/upload-file (gallery-path) file :create-path? true)
-           (image {:height "150px"}
-                  (str "/img/" (url-encode filename)))
+            ;;save the file and create the thumbnail
+            (upload-file (gallery-path) file )
+            (save-thumbnail file)
+            (db/add-image (session/get :user) filename)
+            ;;display the thumbnail
+            (image {:height "150px"}
+                  (thumb-uri (session/get :user) filename))
            
            (catch Exception ex
              (str "error uploading file " (.getMessage ex)))))))
    
-   (defn serve-file [file-name]
-     (file-response (str (gallery-path) File/separator file-name)))
+   ;; use user ID when looking up a file
+   (defn serve-file [user-id file-name]
+     (file-response (str galleries File/separator user-id File/separator file-name)))
    
    (defroutes upload-routes
-     (GET "/upload" [info] (upload-page info))
+     (GET "/img/:user-id/:file-name" [user-id file-name]
+          (serve-file user-id file-name))
      
-     (POST "/upload" [file] (handle-upload file))
-     
-     (GET "/img/:file-name" [file-name] (serve-file file-name)))
+     (GET "/upload" [info] (restricted (upload-page info)))
+               
+     (POST "/upload" [file] (restricted (handle-upload file))))
 
 

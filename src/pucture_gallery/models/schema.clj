@@ -9,3 +9,11 @@
       [:id "varchar(32) PRIMARY KEY"]
       [:pass "varchar(100)"])))
 
+;;contains reference to the user's ID and image name
+(defn create-images-table []
+  (sql/with-connection db
+    (sql/create-table
+      :images
+      [:userid "varchar(32)"]
+      [:name "varchar(100)"])))
+

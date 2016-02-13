@@ -7,7 +7,7 @@
 (defn base [& content]
   (html5
     [:head
-     [:title "Welcome to picture-gallery"]
+     [:title "Welcome to Clojurebook"]
      (include-css "/css/screen.css")]
     [:body content]))
 
@@ -21,7 +21,7 @@
 (defn user-menu [user]
   (list 
       [:div (link-to "/logout" (str "logout " user))]
-      [:div (link-to "/upload" (str "upload photos"))]))
+      [:div (link-to "/upload" "upload photos")]))
 
 (defn common [& content]
   (base

@@ -17,6 +17,7 @@
   (route/resources "/")
   (route/not-found "Not Found"))
 
+;;checks whether a user is present in the session before granting access to restricted pages
 (defn user-page [_]
   (session/get :user))
 
@@ -24,4 +25,6 @@
            [auth-routes
             home-routes
             upload-routes
-            app-routes]))
+            app-routes]
+           ;;applies rules to restricted pages
+           :access-rules [user-page]))

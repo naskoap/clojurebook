@@ -4,7 +4,9 @@
             [noir.session :as session]))
 
 (defn home []
-  (layout/common [:h1 "Welcome to your picture gallery " (session/get :user)]))
+  (if (session/get :user)
+    (layout/common [:h1 "Welcome to Clojurebook, " (str (session/get :user) "!")])
+    (layout/common [:h1 "Welcome to Clojurebook!"])))
 
 (defroutes home-routes
   (GET "/" [] (home)))
