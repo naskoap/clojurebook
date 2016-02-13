@@ -1,6 +1,6 @@
 # Clojurebook
 
-An interactive web application with Compojure and Ring
+An interactive web application with Compojure and Ring. Users will have the ability to register an account, login with their credentials, store pictures along with descriptions of the picture as well as browse other users' galleries and communicate with each through a real-time chat service. Also, users will have access to weather data (such as temperature and wind) in their respective area. Finally, users will have the ability to close their account and delete all of the data associated with it. 
 
 ## Goals of the project 
 
@@ -28,7 +28,8 @@ An interactive web application with Compojure and Ring
 - [ ] the interface should delete all three components: the picture, its thumbnail and its description
 
 **6. Display Weather Data**
-- [ ] use [OpenWeatherMap's API] (http://openweathermap.org/) and geolocation to display weather data at the location where the user is logging in from
+- [ ] possible options include [OpenWeatherMap's API] (http://openweathermap.org/) and [The Weather Channel's API](http://www.wunderground.com/weather/api/?ref=twc), [among others](http://www.programmableweb.com/news/top-10-weather-apis/analysis/2014/11/13) 
+- [ ] use geolocation to display weather data at the user's login location
 - [ ] although many map layers are available, this project will focus solely on temperature and wind data  
  
 **7. Implement a real-time chat service**
