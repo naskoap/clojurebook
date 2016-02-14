@@ -1,6 +1,8 @@
 (ns pucture-gallery.routes.gallery
   (:require [compojure.core :refer :all]
             [hiccup.element :refer :all]
+            [hiccup.page :refer :all]
+            [hiccup.form :refer [check-box]]
             
             [pucture-gallery.views.layout :as layout]
             [pucture-gallery.util :refer [thumb-prefix image-uri thumb-uri]]
@@ -12,14 +14,20 @@
 ;;generates a div with our thumbnail link and add a thumbnail class to it
 (defn thumbnail-link [{:keys [userid name]}]
   [:div.thumbnail
-   [:a {:href (image-uri userid name)}
-    (image (thumb-uri userid name))]])
+   [:a {:class name :href (image-uri userid name)}
+    (image (thumb-uri userid name))
+    (if (= userid (session/get :user))
+      (check-box name))]])
 
 ;;reads the images for the user in the session and converts them to thumbnails by mapping
 ;;thumbnail-link accross them
 (defn display-gallery [userid]
-  (or 
-    (not-empty (map thumbnail-link (db/images-by-user userid)))
+  (if-let [gallery (not-empty (map thumbnail-link (db/images-by-user userid)))]
+    [:div
+     [:div#error]
+     gallery
+     (if (= userid (session/get :user))
+       [:input#delete {:type "submit" :value "delete images"}])]
     [:p "The user " userid " does not have any galleries."]))
 
 ;;generate gallery links
@@ -34,6 +42,11 @@
 
 (defroutes gallery-routes
   ;;display the gallery for a given userID
-  (GET "/gallery/:userid" [userid] (restricted (layout/common (display-gallery userid)))))
+  (GET "/gallery/:userid" [userid] 
+       ;;restrict access for non-logged-in users
+       (restricted 
+        (layout/common 
+          (include-js "/js/gallery.js")
+          (display-gallery userid)))))
 
 

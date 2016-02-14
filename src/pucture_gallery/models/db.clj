@@ -35,7 +35,7 @@
     sql/with-query-results
     res ["select * from images where userid = ?" userid] (doall res)))
 
- ;;pull a single image for each user
+ ;;pulls a single image for each user
 (defn get-gallery-previews []
   (with-db
     sql/with-query-results
@@ -44,4 +44,9 @@
      (select *, row_number() over (partition by userid) as row_number from images)
      as rows where row_number = 1"]
     (doall res)))
+
+;;deletes an image from the database
+(defn delete-image [userid name]
+  (with-db
+    sql/delete-rows :images ["userid=? and name=?" userid name]))
 

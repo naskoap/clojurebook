@@ -76,12 +76,29 @@
    (defn serve-file [user-id file-name]
      (file-response (str galleries File/separator user-id File/separator file-name)))
    
+   ;;deletes an image, its thumbnail and the db entry for the image
+   (defn delete-image [userid name]
+     (try 
+       (db/delete-image userid name)
+       (io/delete-file (str (gallery-path) File/separator name))
+       (io/delete-file (str (gallery-path) File/separator thumb-prefix name))
+       "ok"
+       (catch Exception ex (.getMessage ex))))
+   
+   ;;handles deletion of multiple images
+   (defn delete-images [names]
+     (let [userid (session/get :user)]
+       (resp/json
+         (for [name names] {:name name :status (delete-image userid name)}))))
+   
    (defroutes upload-routes
      (GET "/img/:user-id/:file-name" [user-id file-name]
           (serve-file user-id file-name))
      
      (GET "/upload" [info] (restricted (upload-page info)))
                
-     (POST "/upload" [file] (restricted (handle-upload file))))
+     (POST "/upload" [file] (restricted (handle-upload file)))
+     
+     (POST "/delete" [names] (restricted (delete-images names))))
 
 
