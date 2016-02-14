@@ -15,16 +15,16 @@ An interactive web application with Compojure and Ring. Users will have the abil
 
 **3. Upload Photos**
 - [x] provide users with the ability to add pictures 
-- [ ] a thumbnail will be used as a link to a full-sized picture
+- [x] a thumbnail will be used as a link to a full-sized picture
 - [ ] add a picture timestamp
-- [ ] list user galleries
+- [x] list user galleries
 
 **4. Include Photo Descriptions**
 - [ ] allow users to include descriptions of the pictures they have uploaded
 - [ ] add a description timestamp 
 
 **5. Delete Photos and Descriptions**
-- [ ] provide an interface for users to remove their uploads 
+- [x] provide an interface for users to remove their uploads 
 - [ ] the interface should delete all three components: the picture, its thumbnail and its description
 
 **6. Display Weather Data**
