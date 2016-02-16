@@ -8,7 +8,9 @@
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
             [pucture-gallery.models.db :as db]
-            [pucture-gallery.util :refer [gallery-path]])
+            [pucture-gallery.util :refer [gallery-path]]
+            [noir.util.route :refer [restricted]]
+            [pucture-gallery.routes.upload :refer [delete-image]])
   (:import java.io.File))
 
 (defn valid? [id pass pass1]
@@ -80,6 +82,26 @@
   (session/clear!)
   (resp/redirect "/"))
 
+;;redirects to a confirmation page, providing an option to back out if the user has chosen to delete 
+;;their account by accident
+(defn delete-account-page []
+  (layout/common
+    (form-to [:post "/confirm-delete"]
+             (submit-button "delete account"))
+    (form-to [:get "/"]
+             (submit-button "cancel"))))
+
+;;deletes all images of a user, deletes the user from the users table and deletes the user's 
+;;image directory
+(defn handle-confirm-delete []
+  (let [user (session/get :user)]
+    (doseq [{:keys [name]} (db/images-by-user user)]
+      (delete-image user name))
+    (clojure.java.io/delete-file (gallery-path))
+    (db/delete-user user))
+  (session/clear!)
+  (resp/redirect "/"))
+
 (defroutes auth-routes 
   (GET "/register" [] 
        (registration-page))
@@ -91,5 +113,11 @@
         (handle-login id pass))
   
   (GET "/logout" []
-       (handle-logout)))
+       (handle-logout))
+  
+  (GET "/delete-account" []
+       (restricted (delete-account-page)))
+  
+  (POST "/confirm-delete" []
+        (restricted (handle-confirm-delete))))
 

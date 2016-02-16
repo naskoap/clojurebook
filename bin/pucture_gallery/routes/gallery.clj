@@ -16,6 +16,7 @@
   [:div.thumbnail
    [:a {:class name :href (image-uri userid name)}
     (image (thumb-uri userid name))
+    ;;(format-time timestamp)
     (if (= userid (session/get :user))
       (check-box name))]])
 
@@ -29,6 +30,11 @@
      (if (= userid (session/get :user))
        [:input#delete {:type "submit" :value "delete images"}])]
     [:p "The user " userid " does not have any galleries."]))
+
+;;(defn format-time [timestamp]
+;;  (-> "MM/dd/yyyy"
+;;    (java.text.SimpleDateFormat.)
+;;    (.format timestamp)))
 
 ;;generate gallery links
 (defn gallery-link [{:keys [userid name]}]
