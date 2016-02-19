@@ -35,8 +35,8 @@ An interactive web application with Compojure and Ring. Users will have the abil
 **7. Implement a real-time chat service**
 - [ ] Viable options include [Aleph](https://github.com/ztellman/aleph), an asynchronous, Ring-compliant library for client and server network programming, [asynch-sockets](https://github.com/bguthrie/async-sockets), [clj-sockets](https://github.com/atroche/clj-sockets) as well as [other websocket interfaces](https://clojars.org/search?q=websockets)
  
-**8. Delete Account**
-- [x] when an account is deleted, the user and all of their corresponding data are removed from the database
+- [x] **8. Delete Account**
+ *  when an account is deleted, the user and all of their corresponding data are removed from the database
 
 ## Prerequisites
 
