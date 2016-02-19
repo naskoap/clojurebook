@@ -50,8 +50,9 @@
 	    (layout/common
 	      [:h2 "Upload an image"]
 	      [:p info]
-	      (form-to {:enctype "multipart/form-data"}
+        (form-to {:enctype "multipart/form-data"}
 	               [:post "/upload"]
+                 ;;[:p "Description: <br>" (text-area {:rows 3 :cols 15} "message" message)]
 	               (file-upload :file)
 	               (submit-button "upload"))))
       
@@ -62,9 +63,10 @@
          
          (try
             ;;save the file and create the thumbnail
-             (upload-file (gallery-path) file )
+            (upload-file (gallery-path) file )
             (save-thumbnail file)
             (db/add-image (session/get :user) filename)
+            ;;(db/add-description (session/get :user) filename description) 
             ;;display the thumbnail
              (image {:height "150px"}
                   (thumb-uri (session/get :user) filename))

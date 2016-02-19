@@ -37,13 +37,14 @@
 
  ;;pulls a single image for each user
 (defn get-gallery-previews []
+  (filter #(:name %)
   (with-db
     sql/with-query-results
     res
     ["select * from 
      (select *, row_number() over (partition by userid) as row_number from images)
      as rows where row_number = 1"]
-    (doall res)))
+    (doall res))))
 
 ;;deletes an image from the database
 (defn delete-image [userid name]
@@ -52,4 +53,5 @@
 
 (defn delete-user [userid]
   (with-db sql/delete-rows :users ["id=?" userid]))
+
 
