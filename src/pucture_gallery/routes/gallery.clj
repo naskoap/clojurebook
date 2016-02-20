@@ -15,10 +15,10 @@
 (defn thumbnail-link [{:keys [userid name]}]
   [:div.thumbnail
    [:a {:class name :href (image-uri userid name)}
-    (image (thumb-uri userid name))
+    (image (thumb-uri userid name))]
     ;;(format-time timestamp)
     (if (= userid (session/get :user))
-      (check-box name))]])
+      (check-box name))])
 
 ;;reads the images for the user in the session and converts them to thumbnails by mapping
 ;;thumbnail-link accross them
@@ -53,6 +53,8 @@
        (restricted 
         (layout/common 
           (include-js "/js/gallery.js")
-          (display-gallery userid)))))
+          (display-gallery userid))))
+  (GET "/gallery" []
+      (restricted (layout/common (show-galleries)))))
 
 

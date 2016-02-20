@@ -7,8 +7,8 @@
 (defn home []
   (cond 
     (session/get :user)
-    ;;(layout/common [:h1 "Welcome to Clojurebook, " (str (session/get :user) "!")])
-    (layout/common (show-galleries))
+    (layout/common [:h1 "Welcome to Clojurebook, " (str (session/get :user) "!")])
+    ;;(layout/common (show-galleries))
     :else
     (layout/common [:h1 "Welcome to Clojurebook!"])))
 
