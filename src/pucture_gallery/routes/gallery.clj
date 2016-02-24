@@ -47,14 +47,14 @@
   (map gallery-link (db/get-gallery-previews)))
 
 (defroutes gallery-routes
+  (GET "/gallery" []
+      (restricted (layout/common (show-galleries))))
   ;;display the gallery for a given userID
   (GET "/gallery/:userid" [userid] 
        ;;restrict access for non-logged-in users
        (restricted 
         (layout/common 
           (include-js "/js/gallery.js")
-          (display-gallery userid))))
-  (GET "/gallery" []
-      (restricted (layout/common (show-galleries)))))
+          (display-gallery userid)))))
 
 
