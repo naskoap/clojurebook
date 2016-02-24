@@ -52,9 +52,9 @@
 	      [:p info]
         (form-to {:enctype "multipart/form-data"}
 	               [:post "/upload"]
-                 ;;[:p "Description: <br>" (text-area {:rows 3 :cols 15} "message" message)]
-	               (file-upload :file)
-	               (submit-button "upload"))))
+                 (file-upload :file)
+	               (submit-button "upload")
+                 [:h2 "Description: <br>" (text-area {:rows 1 :cols 20} "message")])))
       
    (defn handle-upload [{:keys [filename] :as file}]
       (upload-page 

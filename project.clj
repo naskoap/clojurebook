@@ -8,6 +8,7 @@
                  [postgresql/postgresql "9.1-901.jdbc4"]
                  [org.clojure/java.jdbc "0.2.3"]
                  [lib-noir "0.8.2"]]
+  :main pucture-gallery.core
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler pucture-gallery.handler/app
          :init pucture-gallery.handler/init

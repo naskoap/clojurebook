@@ -38,6 +38,13 @@ label {
 	padding: 20px
 }
 
+#chat {
+	color: #D1F0DA;
+	float: left;
+	font-size: 25x;
+	font-weight: bold
+}
+
 #usermenu {
 	background-color: #7E8F7C;
 	width: 100%;
