@@ -3,7 +3,6 @@
             [hiccup.element :refer [link-to]]
             [noir.session :as session]
             [hiccup.form :refer :all]
-            [hiccup.page :refer [include-css include-js]]
             [ring.util.response :refer [content-type response]]
             [compojure.response :refer [Renderable]]))
 
@@ -20,7 +19,9 @@
        (include-css "/css/screen.css")
        [:script {:type "text/javascript"}
         (str "var context=\"" (:context request) "\";")]
-       (include-js "//code.jquery.com/jquery-2.0.2.min.js")]
+       (include-js "//code.jquery.com/jquery-2.0.2.min.js"
+                   "/js/colors.js"
+                   "/js/site.js")]
     [:body content]))))
 
 (defn base [& content]
