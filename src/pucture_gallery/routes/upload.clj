@@ -11,7 +11,8 @@
             [clojure.java.io :as io]
             [ring.util.response :refer [file-response]]
             [pucture-gallery.models.db :as db]
-            [pucture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]])
+            [pucture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]]
+            [taoensso.timbre :refer [trace debug info warn error fatal]])
 
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
@@ -40,10 +41,11 @@
     ; save thumbnail and call it after upload-file is called
     (defn save-thumbnail [{:keys [filename]}]
       (let [path (str (gallery-path) File/separator)]
-        (ImageIO/write 
-          (scale-image (io/input-stream (str path filename)))
-          "jpeg"
-          (File. (str path thumb-prefix filename)))))
+        (with-open [img (io/input-stream (str path filename))]
+        (ImageIO/write
+          (scale-image img)
+               "jpeg"
+            (File. (str path thumb-prefix filename))))))
     
    ;;renders the upload image and a handler to process the form's POST action
    (defn upload-page [info]
@@ -85,7 +87,9 @@
        (io/delete-file (str (gallery-path) File/separator name))
        (io/delete-file (str (gallery-path) File/separator thumb-prefix name))
        "ok"
-       (catch Exception ex (.getMessage ex))))
+       (catch Exception ex 
+         (error ex "an error has occured while deleting" name)
+         (.getMessage ex))))
    
    ;;handles deletion of multiple images
    (defn delete-images [names]
