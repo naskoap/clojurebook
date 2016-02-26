@@ -16,7 +16,6 @@
   [:div.thumbnail
    [:a {:class name :href (image-uri userid name)}
     (image (thumb-uri userid name))]
-    ;;(format-time timestamp)
     (if (= userid (session/get :user))
       (check-box name))])
 
@@ -40,7 +39,11 @@
 (defn gallery-link [{:keys [userid name]}]
   [:div.thumbnail
     [:a {:href (str "/gallery/" userid)}
-     userid "'s gallery" [:br]
+     (if (= userid (session/get :user))
+       (list (str "my gallery")
+             [:br])
+       (list (str userid "'s gallery")
+             [:br]))
      (image (thumb-uri userid name))]])
 
 (defn show-galleries []

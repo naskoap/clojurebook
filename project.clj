@@ -11,7 +11,8 @@
                  [com.taoensso/timbre "2.6.1"]
                  [com.postspectacular/rotor "0.1.0"]]
   :main pucture-gallery.core
-  :plugins [[lein-ring "0.8.12"]]
+  :plugins [[lein-ring "0.8.12"]
+            [lein-environ "0.4.0"]]
   :ring {:handler pucture-gallery.handler/app
          :init pucture-gallery.handler/init
          :destroy pucture-gallery.handler/destroy}
@@ -19,6 +20,8 @@
   {:uberjar {:aot :all}
    :production
    {:ring
-    {:open-browser? false, :stacktraces? false, :auto-reload? false}}
+    {:open-browser? false, 
+     :stacktraces? false, 
+     :auto-reload? false}}
    :dev
-   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.3.1"]]}})
+   {:dependencies [[ring-mock "0.1.5"]]}})
