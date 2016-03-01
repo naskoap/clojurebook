@@ -10,6 +10,7 @@
                  [lib-noir "0.8.2"]
                  [com.taoensso/timbre "2.6.1"]
                  [com.postspectacular/rotor "0.1.0"]]
+                 ;;[environ "0.4.0"]
   :main pucture-gallery.core
   :plugins [[lein-ring "0.8.12"]
             [lein-environ "0.4.0"]]
@@ -23,5 +24,16 @@
     {:open-browser? false, 
      :stacktraces? false, 
      :auto-reload? false}}
-   :dev
-   {:dependencies [[ring-mock "0.1.5"]]}})
+     ;;:env {:port 3000
+     ;;      :db-url "//localhost/login"
+     ;;      :db-user "admin"
+     ;;      :db-pass "admin"
+     ;;      :galleries-path "galleries"}
+    :dev
+   {:dependencies [[ring-mock "0.1.5"]
+                   [ring/ring-devel "1.2.0"]]}})
+    ;;:env {:port 3000
+    ;;      :db-url "//localhost/gallery"
+    ;;      :db-user "admin"
+    ;;      :db-pass "secretProdPassword"
+    ;;      :galleries-path "galleries"}

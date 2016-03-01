@@ -51,14 +51,15 @@
    (defn upload-page [info]
 	    (layout/common
 	      [:h2 "Upload an image"]
-	      [:p info]
+        [:p info]
         (form-to {:enctype "multipart/form-data"}
 	               [:post "/upload"]
                  (file-upload :file)
-	               (submit-button "upload")
+                 (submit-button "upload")
                  [:h2 "Description: <br>" (text-area {:rows 1 :cols 20} "message")])))
-      
-   (defn handle-upload [{:keys [filename] :as file}]
+        ;;[:h2 "Description: <br>" (text-area {:rows 1 :cols 20} "message")]
+        
+    (defn handle-upload [{:keys [filename] :as file} message]
       (upload-page 
        (if (empty? filename)
          "please select a file to upload"
@@ -67,10 +68,9 @@
             ;;save the file and create the thumbnail
             (upload-file (gallery-path) file )
             (save-thumbnail file)
-            (db/add-image (session/get :user) filename)
-            ;;(db/add-description (session/get :user) filename description) 
+            (db/add-image (session/get :user) filename message)
             ;;display the thumbnail
-             (image {:height "150px"}
+          (image {:height "150px"}
                   (thumb-uri (session/get :user) filename))
            
            (catch Exception ex
@@ -103,7 +103,7 @@
      
      (GET "/upload" [info] (restricted (upload-page info)))
                
-     (POST "/upload" [file] (restricted (handle-upload file)))
+     (POST "/upload" [file message] (restricted (handle-upload file message)))
      
      (POST "/delete" [names] (restricted (delete-images names))))
 

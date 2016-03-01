@@ -1,6 +1,7 @@
 (ns pucture-gallery.util
   (:require [noir.session :as session]
             [hiccup.util  :refer [url-encode]])
+            ;[environ.core :refer [env]]
   (:import java.io.File))
 
    (def thumb-prefix "thumb_")

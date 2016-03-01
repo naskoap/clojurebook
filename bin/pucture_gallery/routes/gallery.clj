@@ -54,7 +54,7 @@
       (restricted (layout/common (show-galleries))))
   ;;display the gallery for a given userID
   (GET "/gallery/:userid" [userid] 
-       ;;restrict access for non-logged-in users
+       ;;restrict access for not-logged-in users
        (restricted 
         (layout/common 
           (include-js "/js/gallery.js")

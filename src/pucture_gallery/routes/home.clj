@@ -1,7 +1,8 @@
 (ns pucture-gallery.routes.home
   (:require [compojure.core :refer :all]
             [pucture-gallery.views.layout :as layout]
-            [noir.session :as session]))
+            [noir.session :as session]
+            [hiccup.page :refer [html5 include-css include-js]]))
 
 (defn home []
   (cond 
