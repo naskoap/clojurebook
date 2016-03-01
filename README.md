@@ -20,7 +20,7 @@ An interactive web application with Compojure and Ring. Users will have the abil
 - [x] list user galleries
 
 **4. Include Photo Descriptions**
-- [ ] allow users to include descriptions of the pictures they have uploaded
+- [x] allow users to include descriptions of the pictures they have uploaded
 - [ ] add a description timestamp 
 
 **5. Delete Photos and Descriptions**
