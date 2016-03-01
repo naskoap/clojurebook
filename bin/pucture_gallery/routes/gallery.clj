@@ -16,6 +16,7 @@
   [:div.thumbnail
    [:a {:class name :href (image-uri userid name)}
     (image (thumb-uri userid name))]
+    [:div.desc (get (into (sorted-map) (db/descriptions-by-user userid name)) :description)]
     (if (= userid (session/get :user))
       (check-box name))])
 
