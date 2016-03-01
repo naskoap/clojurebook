@@ -33,7 +33,12 @@
 (defn images-by-user [userid]
   (with-db
     sql/with-query-results
-    res ["select * from images where userid = ?" userid] (doall res)))
+    res ["select userid,name from images where userid = ?" userid] (doall res)))
+
+(defn descriptions-by-user [userid name]
+  (with-db
+    sql/with-query-results
+    res ["select description from images where userid = ? and name = ?" userid name] (doall res)))
 
  ;;pulls a single image for each user
 (defn get-gallery-previews []

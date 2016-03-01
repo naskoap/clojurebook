@@ -97,3 +97,13 @@ input[type=submit] {
 	border-bottom: 1px solid #222;
 	cursor: pointer;
 }
+
+.desc {
+	background: white;
+	color: black;
+	//text-align: center;
+	font-size: 15px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	max-width: 200px;	
+}
