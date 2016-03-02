@@ -18,6 +18,8 @@ function deleteImages() {
 						if("ok" === this.status) {
 						var element = document.getElementById(this.name);
 						$(element).parent().parent().remove();
+						//reload the current document
+						window.location.reload();
 					}
 					else
 						errors
