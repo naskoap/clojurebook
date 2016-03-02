@@ -13,19 +13,18 @@ An interactive web application with Compojure and Ring. Users will have the abil
  * display a welcome message when a user is not in session
  * when the user is in session, a logout button will be displayed
 
-**3. Upload Photos**
-- [x] provide users with the ability to add pictures 
-- [x] a thumbnail will be used as a link to a full-sized picture
-- [ ] add a picture timestamp
-- [x] list user galleries
+- [x] **3. Upload Photos**
+ * provide users with the ability to add pictures 
+ * a thumbnail will be used as a link to a full-sized picture
+ * add a picture timestamp
+ * list user galleries
 
-**4. Include Photo Descriptions**
-- [x] allow users to include descriptions of the pictures they have uploaded
-- [ ] add a description timestamp 
+- [x] **4. Include Photo Descriptions**
+ * allow users to include descriptions of the pictures they have uploaded
 
-**5. Delete Photos and Descriptions**
-- [x] provide an interface for users to remove their uploads 
-- [x] the interface should delete all data stored for a particular user
+- [x] **5. Delete Photos and Descriptions**
+ * provide an interface for users to remove their uploads 
+ * the interface should delete all data stored for a particular user
 
 **6. Display Weather Data**
 - [ ] possible options include [OpenWeatherMap's API] (http://openweathermap.org/) and [The Weather Channel's API](http://www.wunderground.com/weather/api/?ref=twc), [among others](http://www.programmableweb.com/news/top-10-weather-apis/analysis/2014/11/13) 
