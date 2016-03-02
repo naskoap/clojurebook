@@ -33,7 +33,7 @@
 (defn images-by-user [userid]
   (with-db
     sql/with-query-results
-    res ["select userid,name from images where userid = ?" userid] (doall res)))
+    res ["select userid,name from images where userid = ? ORDER BY timestamp DESC" userid] (doall res)))
 
 (defn descriptions-by-user [userid name]
   (with-db
@@ -50,6 +50,13 @@
      (select *, row_number() over (partition by userid) as row_number from images)
      as rows where row_number = 1"]
     (doall res))))
+
+(defn read-timestamps [userid name]
+  (sql/with-connection
+    db
+    (sql/with-query-results res
+      ["SELECT timestamp FROM images where userid=? and name=?" userid name]
+      (doall res))))
 
 ;;deletes an image from the database
 (defn delete-image [userid name]

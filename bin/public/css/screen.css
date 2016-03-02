@@ -99,11 +99,20 @@ input[type=submit] {
 }
 
 .desc {
-	background: white;
-	color: black;
+	//background: white;
 	//text-align: center;
+	font-family: Courier New;
+	text-shadow: 1px 1px 1px #ABC;
+	font-weight: 700;
 	font-size: 15px;
 	overflow: hidden;
     text-overflow: ellipsis;
 	max-width: 200px;	
+}
+
+.time {
+	font-family: Comic Sans MS;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px #FFF;
+	text-align:  right;
 }
