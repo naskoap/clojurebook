@@ -11,9 +11,16 @@
             [noir.session :as session]
             [noir.util.route :refer [restricted]]))
 
+;;generates a timestamp for every picture
+(defn format-time [timestamp]
+  (-> "MM/dd/yyyy"
+    (java.text.SimpleDateFormat.)
+    (.format timestamp)))
+
 ;;generates a div with our thumbnail link and add a thumbnail class to it
 (defn thumbnail-link [{:keys [userid name]}]
   [:div.thumbnail
+   [:div.time (format-time (get (into (sorted-map) (db/read-timestamps userid name)) :timestamp))]
    [:a {:class name :href (image-uri userid name)}
     (image (thumb-uri userid name))]
     [:div.desc (get (into (sorted-map) (db/descriptions-by-user userid name)) :description)]
@@ -30,11 +37,6 @@
      (if (= userid (session/get :user))
        [:input#delete {:type "submit" :value "delete images"}])]
     [:p "The user " userid " does not have any galleries."]))
-
-;;(defn format-time [timestamp]
-;;  (-> "MM/dd/yyyy"
-;;    (java.text.SimpleDateFormat.)
-;;    (.format timestamp)))
 
 ;;generate gallery links
 (defn gallery-link [{:keys [userid name]}]
