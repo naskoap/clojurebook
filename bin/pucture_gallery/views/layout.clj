@@ -32,8 +32,8 @@
 
 (defn guest-menu []
  (make-menu 
- (link-to "/" "home")
-  (link-to "/register" "register")
+ ;;(link-to "/" "home")
+ (link-to "/register" "register")
        (form-to [:post "/login"]
                 (text-field {:placeholder "username"} "id")
                 (password-field {:placeholder "password"} "pass")

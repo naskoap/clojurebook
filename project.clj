@@ -9,11 +9,13 @@
                  [org.clojure/java.jdbc "0.2.3"]
                  [lib-noir "0.8.2"]
                  [com.taoensso/timbre "2.6.1"]
-                 [com.postspectacular/rotor "0.1.0"]]
-                 ;;[environ "0.4.0"]
+                 [com.postspectacular/rotor "0.1.0"]
+                 [environ "1.0.2"]
+                 [clj-http "0.7.0"]
+                 [cheshire "5.0.2"]]                 
   :main pucture-gallery.core
   :plugins [[lein-ring "0.8.12"]
-            [lein-environ "0.4.0"]]
+            [lein-environ "1.0.2"]]
   :ring {:handler pucture-gallery.handler/app
          :init pucture-gallery.handler/init
          :destroy pucture-gallery.handler/destroy}
@@ -31,7 +33,8 @@
      ;;      :galleries-path "galleries"}
     :dev
    {:dependencies [[ring-mock "0.1.5"]
-                   [ring/ring-devel "1.2.0"]]}})
+                   [ring/ring-devel "1.2.0"]]
+    {:env {:forecast-key "641e0eeba5f84644541e02c40f038db5"}}}})
     ;;:env {:port 3000
     ;;      :db-url "//localhost/gallery"
     ;;      :db-user "admin"
