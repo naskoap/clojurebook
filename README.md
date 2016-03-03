@@ -41,7 +41,7 @@ An interactive web application with Compojure and Ring. Users will have the abil
 
 ## Prerequisites
 
-You will need [PostgreSQL](http://www.postgresql.org/) and [Leiningen][1] 1.7.0 or above installed.
+You will need [PostgreSQL](http://www.postgresql.org/) 9.1 or above and [Leiningen][1] 1.7.0 or above installed.
 
 [1]: https://github.com/technomancy/leiningen 
 
