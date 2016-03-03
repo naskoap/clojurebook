@@ -10,8 +10,7 @@
             [pucture-gallery.models.db :as db]
             [pucture-gallery.util :refer [gallery-path]]
             [noir.util.route :refer [restricted]]
-            [pucture-gallery.routes.upload :refer [delete-image]]
-            [hiccup.element :refer [link-to]])
+            [pucture-gallery.routes.upload :refer [delete-image]])
   (:import java.io.File))
 
 (defn valid? [id pass pass1]
@@ -34,22 +33,21 @@
 
 (defn registration-page [& [id]]
   (layout/base
-    [:br]
     (list
-     (form-to [:get "/"] 
-             (submit-button {:tabindex 4} "return to home"))
-     [:br]
-    (form-to [:post "/register"]
-             (control :id 
+        (form-to [:post "/register"]
+                 (control :id 
                       (label "user-id" "user id")
                       (text-field {:tabindex 1} "id" id))
-             (control :pass 
+                 (control :pass 
                       (label "pass" "password")
                       (password-field {:tabindex 2} "pass"))
-             (control :pass1
+                 (control :pass1
                       (label "pass" "retype password")
-                      (password-field {:tabindex 3} "pass1")) [:br]
-             (submit-button {:tabindex 4} "create account")))))
+                      (password-field {:tabindex 3} "pass1"))
+                 (submit-button {:tabindex 4} "create account"))
+        [:br]
+        (form-to [:get "/"]
+                 (submit-button {:tabindex 5} "return to home")))))
 
 (defn format-error [id ex]
   (cond
