@@ -59,4 +59,4 @@ This project is inspired by [*Web Development with Clojure*] (https://pragprog.c
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Atanas S. Apostolov 
+Copyright © 2016 Atanas S. Apostolov 
