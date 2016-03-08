@@ -26,18 +26,24 @@ An interactive web application with Compojure and Ring. Users will have the abil
  * provide an interface for users to remove their uploads 
  * the interface should delete all data stored for a particular user
 
-**6. Display Weather Data**
+**6. Comment on Photos**
+- [ ] allow user to comment on photos, both their own and of others
+- [ ] allow user to delete comments posted by... 
+   - [ ] that user on any photo
+   - [ ] other users who have commented on that user's photos
+
+**7. Display Weather Data**
 - [ ] possible options include [OpenWeatherMap's API] (http://openweathermap.org/) and [The Weather Channel's API](http://www.wunderground.com/weather/api/?ref=twc), [among others](http://www.programmableweb.com/news/top-10-weather-apis/analysis/2014/11/13) 
 - [ ] use geolocation to display weather data at the user's login location
 - [ ] although many map layers are available, this project will focus solely on temperature and wind data  
  
-**7. Implement a real-time chat service**
+**8. Implement a real-time chat service**
 - [ ] viable options include [Aleph](https://github.com/ztellman/aleph), an asynchronous, Ring-compliant library for client and server network programming, [asynch-sockets](https://github.com/bguthrie/async-sockets), [clj-sockets](https://github.com/atroche/clj-sockets) as well as [other websocket interfaces](https://clojars.org/search?q=websockets)
  
-- [x] **8. Delete Account**
+- [x] **9. Delete Account**
  *  when an account is deleted, the user and all of their corresponding data are removed from the database
  
-- [ ] **9. Deploy on Heroku**
+- [ ] **10. Deploy on Heroku**
 
 ## Prerequisites
 
