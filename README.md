@@ -1,6 +1,6 @@
 # Clojurebook
 
-An interactive web application with Compojure and Ring. Users will have the ability to register an account, login with their credentials, store pictures along with descriptions of the picture as well as browse other users' galleries and communicate with each through a real-time chat service. Also, users will have access to weather data (such as temperature and wind) in their respective area. Finally, users will have the ability to close their account and delete all of the data associated with it. 
+An interactive web application with Compojure and Ring. Users will have the ability to register an account, login with their credentials, store pictures along with descriptions of the picture as well as browse other users' galleries and communicate with each through a real-time chat service. Also, users will have access to weather data (such as temperature and wind) in their respective area. Another feature will be posting comments to peoples' galleries. Finally, users will have the ability to close their account and delete all of the data associated with it. 
 
 ## Goals of the project 
 
