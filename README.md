@@ -47,6 +47,9 @@ Ideally, private messaging will be enabled at a later stage of the application w
  
 - [ ] **10. Deploy on Heroku**
 
+**11. Enable Personal Messaging**
+- [ ] users will be able to communicate with other users through private messaging as an alternative to public instant messaging
+
 ## Prerequisites
 
 You will need [PostgreSQL](http://www.postgresql.org/) 9.1 or above and [Leiningen][1] 1.7.0 or above installed.
