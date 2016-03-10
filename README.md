@@ -2,6 +2,8 @@
 
 An interactive web application with Compojure and Ring. Users will have the ability to register an account, login with their credentials, store pictures along with descriptions of the picture as well as browse other users' galleries and communicate with each through a real-time chat service. Also, users will have access to weather data (such as temperature and wind) in their respective area. Another feature will be posting comments to peoples' galleries. Finally, users will have the ability to close their account and delete all of the data associated with it. 
 
+Ideally, private messaging will be enabled at a later stage of the application where users will be able to contact each other even if direct, real time messaging is unavailable, i.e. there are no other users online.
+
 ## Goals of the project 
 
 - [x] **1. Register an Account**
